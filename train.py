@@ -49,7 +49,7 @@ def main():
                         help='tokenized语料存放位置')
     parser.add_argument('--raw', action='store_true', help='是否先做tokenize')
     parser.add_argument('--epochs', default=5, type=int, required=False, help='训练循环')
-    parser.add_argument('--batch_size', default=8, type=int, required=False, help='训练batch size')
+    parser.add_argument('--batch_size', default=1, type=int, required=False, help='训练batch size')
     parser.add_argument('--lr', default=1.5e-4, type=float, required=False, help='学习率')
     parser.add_argument('--warmup_steps', default=2000, type=int, required=False, help='warm up步数')
     parser.add_argument('--log_step', default=1, type=int, required=False, help='多少步汇报一次loss，设置为gradient accumulation的整数倍')
@@ -88,6 +88,7 @@ def main():
         full_tokenizer = tokenization_bert.BertTokenizer(vocab_file=args.tokenizer_path)
     full_tokenizer.max_len = 999999
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
+#     device = 'cpu'
     print('using device:', device)
 
     raw_data_path = args.raw_data_path

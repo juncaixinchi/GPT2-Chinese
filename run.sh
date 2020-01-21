@@ -7,6 +7,6 @@ python train.py \
 
 python ./generate.py \
   --fast_pattern \
-  --length=64 \
+  --length=30 \
   --nsamples=5 \
-  --prefix="年年"
+  --prefix="东风"
