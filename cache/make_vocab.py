@@ -20,12 +20,21 @@ def main():
 
     f = open(args.raw_data_path, 'r')
     lines = json.load(f)
-    for i, line in enumerate(tqdm(lines)):
-        lines[i] = lac.cut(line, text=True)
 
-    tokenizer.fit_on_texts(lines)
-    vocab = list(tokenizer.index_word.values())
-    pre = ['[SEP]', '[CLS]', '[MASK]', '[PAD]', '[UNK]']
+    # for i, line in enumerate(tqdm(lines)):
+    #     lines[i] = lac.cut(line, text=True)
+
+    # tokenizer.fit_on_texts(lines)
+    # vocab = list(tokenizer.index_word.values())
+
+    vocab = []
+    for i, line in enumerate(tqdm(lines)):
+        for j in list(line):
+            vocab.append(j)
+    vocab = list(set(vocab))
+
+    # pre = ['[SEP]', '[CLS]', '[MASK]', '[PAD]', '[UNK]']
+    pre = ['[UNK]']
     vocab = pre + vocab
     with open(args.vocab_file, 'w') as f:
         for word in vocab[:args.vocab_size + 5]:
