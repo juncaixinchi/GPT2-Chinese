@@ -16,7 +16,7 @@ from tqdm import tqdm
 def build_files(raw_data_path, tokenized_data_path, full_tokenizer, num_pieces):
     with open(raw_data_path, 'r', encoding='utf8') as f:
         print('reading lines')
-        lines = f.read().split('\n')
+        lines = f.read()
         lines = [line.replace('\n', ' [SEP] ') for line in lines]  # 用[SEP]表示换行, 段落之间使用SEP表示段落结束
     single = ''.join(lines)
     len_single = len(single)
@@ -40,12 +40,12 @@ def main():
     parser.add_argument('--model_config', default='config/model_config_user.json', type=str, required=False,
                         help='选择模型参数')
     parser.add_argument('--tokenizer_path', default='cache/vocab_user.txt', type=str, required=False, help='选择词库')
-    parser.add_argument('--raw_data_path', default='data/train.json', type=str, required=False, help='原始训练语料')
+    parser.add_argument('--raw_data_path', default='data/train.txt', type=str, required=False, help='原始训练语料')
     parser.add_argument('--tokenized_data_path', default='data/tokenized/', type=str, required=False,
                         help='tokenized语料存放位置')
     parser.add_argument('--raw', action='store_true', help='是否先做tokenize')
     parser.add_argument('--epochs', default=5, type=int, required=False, help='训练循环')
-    parser.add_argument('--batch_size', default=8, type=int, required=False, help='训练batch size')
+    parser.add_argument('--batch_size', default=2, type=int, required=False, help='训练batch size')
     parser.add_argument('--lr', default=1.5e-4, type=float, required=False, help='学习率')
     parser.add_argument('--warmup_steps', default=2000, type=int, required=False, help='warm up步数')
     parser.add_argument('--log_step', default=1, type=int, required=False, help='多少步汇报一次loss')

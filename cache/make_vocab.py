@@ -34,7 +34,6 @@ def main():
     vocab = list(set(vocab))
 
     pre = ['[SEP]', '[CLS]', '[MASK]', '[PAD]', '[UNK]']
-    pre = ['[UNK]']
     vocab = pre + vocab
     with open(args.vocab_file, 'w') as f:
         for word in vocab[:args.vocab_size + 5]:
