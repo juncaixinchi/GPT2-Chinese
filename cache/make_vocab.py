@@ -19,7 +19,7 @@ def main():
     print('This script is extremely slow especially for large corpus. Take a break.')
 
     f = open(args.raw_data_path, 'r')
-    lines = json.load(f)
+    lines = f.read().split('\n')
 
     # for i, line in enumerate(tqdm(lines)):
     #     lines[i] = lac.cut(line, text=True)
@@ -33,7 +33,7 @@ def main():
             vocab.append(j)
     vocab = list(set(vocab))
 
-    # pre = ['[SEP]', '[CLS]', '[MASK]', '[PAD]', '[UNK]']
+    pre = ['[SEP]', '[CLS]', '[MASK]', '[PAD]', '[UNK]']
     pre = ['[UNK]']
     vocab = pre + vocab
     with open(args.vocab_file, 'w') as f:

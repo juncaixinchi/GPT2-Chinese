@@ -143,7 +143,7 @@ def main():
     parser.add_argument('--repetition_penalty', default=1.0, type=float, required=False)
 
     args = parser.parse_args()
-    print('args:\n' + args.__repr__())
+    # print('args:\n' + args.__repr__())
 
     if args.segment:
         from tokenizations import tokenization_bert_word_level as tokenization_bert
@@ -200,17 +200,17 @@ def main():
                         text[i] = '\n\n'
                     elif item == '[SEP]':
                         text[i] = '\n'
-                info = "=" * 40 + " SAMPLE " + str(generated) + " " + "=" * 40 + "\n"
+                info = "\n" +"=" * 40 + " SAMPLE " + str(generated) + " " + "=" * 40 + "\n"
                 print(info)
                 text = ''.join(text).replace('##', '').strip()
-                print(text)
+                print(text + "\n")
                 if args.save_samples:
                     samples_file.write(info)
                     samples_file.write(text)
                     samples_file.write('\n')
                     samples_file.write('=' * 90)
                     samples_file.write('\n' * 2)
-        print("=" * 80)
+        print("=" * 42 + " Done " + "=" * 42)
         if generated == nsamples:
             # close file when finish writing.
             if args.save_samples:
