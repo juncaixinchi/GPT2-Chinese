@@ -22,5 +22,4 @@ python ./generate.py \
   --fast_pattern \
   --length=256 \
   --nsamples=1 \
-  --model_path model/model_epoch1 \
   --prefix="今天"
